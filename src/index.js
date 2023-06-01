@@ -19,8 +19,9 @@ function login(event) {
 function submitResponse(name, role) {
   
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'http://localhost:8080/api/submitResponse', true);
+  xhr.open('POST', 'http://127.0.0.1:8080/api/auth', true);
   xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
   
   xhr.onload = function() {
     if (xhr.status === 200) {
@@ -41,6 +42,6 @@ function submitResponse(name, role) {
     console.error('Request failed');
   };
   
-  var requestBody = JSON.stringify({ username: name, role: role });
+  var requestBody = JSON.stringify({ name: name, type: role });
   xhr.send(requestBody);
 }

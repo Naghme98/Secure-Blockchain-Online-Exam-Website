@@ -9,8 +9,9 @@ function submitGrade() {
 
   let answer = document.getElementById("grade").value;
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'http://localhost:8080/api/submitResponse', true);
+  xhr.open('POST', 'http://127.0.0.1:8080/api/saveGrade/asset100', true);
   xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
   
   xhr.onload = function() {
     if (xhr.status === 200) {
@@ -26,6 +27,6 @@ function submitGrade() {
     console.error('Request failed');
   };
   
-  var requestBody = JSON.stringify({ question: questionText, answer: answer });
+  var requestBody = JSON.stringify({ assetId: "asset100", grade: 2.2 });
   xhr.send(requestBody);
 }
